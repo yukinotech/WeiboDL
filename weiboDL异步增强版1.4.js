@@ -25,7 +25,7 @@
     //增加样式
     addStyle(
         `
-    * {
+        * {
             margin: 0;
             padding: 0;
         }
@@ -61,7 +61,7 @@
             left: 5px;
             /* background-color: blue; */
             display: none;
-            border: 1px solid #f5144c9d;
+            border: 1px solid rgba(245, 20, 76, 0.62);
             border-radius: 0.2rem;
             text-align: center;
         }
@@ -74,7 +74,7 @@
             right: -15px;
             /* background-color: purple; */
             display: none;
-            border: 1px solid #f5144c9d;
+            border: 1px solid rgba(245, 20, 76, 0.62);
             border-radius: 0.2rem;
             text-align: center;
         }
@@ -102,7 +102,7 @@
         #icon {
             line-height: 40px;
             text-decoration: none;
-            color: #f5144c9d;
+            color: rgba(245, 20, 76, 0.62);
             font-family: sans-serif;
             font-size: 24px;
         }
@@ -112,9 +112,9 @@
         }
 
         #loadBtn {
-            color: #f5144c9d;
+            color: rgba(245, 20, 76, 0.62);
             background-color: #fff;
-            border: 1px solid #f5144c9d;
+            border: 1px solid rgba(245, 20, 76, 0.62);
             height: 30px;
             width: 50px;
             line-height: 1.25;
@@ -127,13 +127,13 @@
 
         #loadBtn:hover {
             color: #fff;
-            background-color: #f5144c9d;
+            background-color: rgba(245, 20, 76, 0.62);
         }
 
         #runBtn {
-            color: #0044fd9d;
+            color: rgba(0, 68, 253, 0.62);
             background-color: #fff;
-            border: 1px solid #0044fd9d;
+            border: 1px solid rgba(0, 68, 253, 0.62);
             height: 30px;
             width: 50px;
             line-height: 1.25;
@@ -146,7 +146,7 @@
 
         #runBtn:hover {
             color: #fff;
-            background-color: #0044fd9d;
+            background-color: rgba(0, 68, 253, 0.62);
         }
         .title{
             text-align: center;
