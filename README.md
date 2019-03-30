@@ -13,6 +13,8 @@
 ![样例2](http://wx3.sinaimg.cn/large/006w0upJgy1fsal9vxxkyj30yw07nweu.jpg)
 - 再单击run就能运行，不使用的情况下，不会占用浏览器资源。
 - click run to run, without using the browser resources will not be occupied.
+## log
+ - 目前19.3.30修复， 使得图片为大图。
 ## License
 
 ![GPLv3](https://www.gnu.org/graphics/gplv3-127x51.png)
