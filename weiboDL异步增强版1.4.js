@@ -391,7 +391,7 @@
         var imgurl_list = []
         for (var i = 0; i < photols.length; i++) {
             var photo = photols[i]
-            var imgurl = photo.pic_host + '/mw690/' + photo.pic_name
+            var imgurl = photo.pic_host + '/large/' + photo.pic_name
             imgurl_list.push(imgurl)
             strshuchu1 = strshuchu1 + imgurl + '<br>'
             //console.log(imgurl)
