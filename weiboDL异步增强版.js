@@ -353,7 +353,7 @@
         var url = ''
         var k = dict.photo / 30 + 1
         for (var i = 1; i <= k; i++) {
-            url = 'http://photo.weibo.com/photos/get_all?uid=' + dict.uid + '&album_id=' + dict.album_id + '&count=30&page=' + i + '&type=3'
+            url = 'https://photo.weibo.com/photos/get_all?uid=' + dict.uid + '&album_id=' + dict.album_id + '&count=30&page=' + i + '&type=3'
             url_list.push(url)
         }
         return url_list
