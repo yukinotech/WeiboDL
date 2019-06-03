@@ -18,7 +18,7 @@
 
     //cdn方式引入jquery
     var script_el = document.createElement('script')
-    script_el.src = 'http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'
+    script_el.src = 'https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'
     var head = document.getElementsByTagName('head')
     head[0].appendChild(script_el)
 
