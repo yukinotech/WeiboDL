@@ -4,6 +4,7 @@
 
 ## log
  - 目前19.3.30修复， 使得出来的图片为大图。
+ - 19.6.3修复关于http在https的域名下不能发送xhr请求的bug。现在已全部改成https。
 
 ## Install
 - 本脚本在tampermonkey上运行，可在greasyfork上安装，安装地址：https://greasyfork.org/zh-CN/scripts/369485-weibodl-1-4-%E5%BC%82%E6%AD%A5%E5%A2%9E%E5%BC%BA%E7%89%88
