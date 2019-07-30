@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WeiboDL 异步增强版
 // @namespace    http://tampermonkey.net/
-// @version      1.6.1
+// @version      1.6.2
 // @description  try to take over the world!
 // @author       You
 // @match        *://photo.weibo.com/*
@@ -349,11 +349,14 @@
 
     //根据dict生成urllist
     function url_listmake(dict) {
+        var origin = window.location.origin
+        console.log(origin)
+        console.log(window.location)
         var url_list = []
         var url = ''
         var k = dict.photo / 30 + 1
         for (var i = 1; i <= k; i++) {
-            url = 'https://photo.weibo.com/photos/get_all?uid=' + dict.uid + '&album_id=' + dict.album_id + '&count=30&page=' + i + '&type=3'
+            url =  origin +'/photos/get_all?uid=' + dict.uid + '&album_id=' + dict.album_id + '&count=30&page=' + i + '&type=3'
             url_list.push(url)
         }
         return url_list
