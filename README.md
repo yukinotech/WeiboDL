@@ -13,6 +13,9 @@
  - 19.7.30
    
    继续修复19.6.3的bug，问题在于在不同的地区或者网络环境下访问域名`photo.weibo.com`，https协议会在部分情况下降级为http，从而导致请求跨域被拦截。已采用`window.location.origin`动态判断当前页面的协议方式。
+
+ - 21.02.10
+   to do 
 ## Install
 - 本脚本在tampermonkey上运行，可在greasyfork上安装，安装地址：https://greasyfork.org/zh-CN/scripts/369485-weibodl-1-4-%E5%BC%82%E6%AD%A5%E5%A2%9E%E5%BC%BA%E7%89%88
 - This script runs on tampermonkey and can be installed on XX with the installation address: https://greasyfork.org/zh-CN/scripts/369485-weibodl-1-4-%E5%BC%82%E6%AD%A5%E5%A2%9E%E5%BC%BA%E7%89%88
