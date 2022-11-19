@@ -1,0 +1,6 @@
+node_modules
+debug
+app.js
+large.js
+generate.js
+yarn.lock
