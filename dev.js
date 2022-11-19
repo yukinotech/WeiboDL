@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WeiboDL 异步增强版
 // @namespace    http://tampermonkey.net/
-// @version      2.0.0
+// @version      2.0.1
 // @description  try to take over the world!
 // @author       You
 // @match        *://photo.weibo.com/*
