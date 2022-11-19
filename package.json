@@ -1,0 +1,18 @@
+{
+  "name": "WeiboDL",
+  "version": "2.0.0",
+  "main": "weibo-dl.js",
+  "repository": "https://github.com/yukinotech/WeiboDL",
+  "author": "yukinotech",
+  "license": "GPL-3.0 license",
+  "scripts": {
+    "dev": "node ./dev-server/main.js | npx tsc -w",
+    "build": "npx tsc"
+  },
+  "devDependencies": {
+    "@fastify/static": "^5.0.2",
+    "fastify": "^3.29.0",
+    "node-fetch": "2",
+    "typescript": "^4.9.3"
+  }
+}

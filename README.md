@@ -3,6 +3,12 @@
 - A Weibo album crawler
 
 ## log
+ - 22.11.19
+    - 支持最新版微博web端，旧版web也兼容了，应该也可以用
+    - 出现报错，或者阻塞，可以手动继续运行（重试报错部分）
+    - 支持生成txt文件，脚本运行完成后，会直接自动下载，可以把txt直接导入到idm等下载器中。
+    - 生成的图片链接有可能直接在浏览器里面打不开，因为微博有做referrer限制，最好使用下载器下载
+
  - 19.3.30
     
     修复小图bug， 使得出来的图片为大图。
@@ -23,9 +29,6 @@
 ## Usage
 - 在微博相册专辑页面的导航栏下能显示出如下的效果：
 - The following effects can be displayed on the navigation bar of the Weibo Album Album page:
-![样例](http://wx2.sinaimg.cn/large/006w0upJgy1fsajcsvm9oj310b0n2mzv.jpg)
-- 单击load，会加载当前相册信息
-- Click load, the current album information will be loaded,
 ![样例2](http://wx3.sinaimg.cn/large/006w0upJgy1fsal9vxxkyj30yw07nweu.jpg)
 - 再单击run就能运行，不使用的情况下，不会占用浏览器资源。
 - click run to run, without using the browser resources will not be occupied.
