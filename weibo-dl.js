@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WeiboDL 异步增强版
 // @namespace    http://tampermonkey.net/
-// @version      2.0.0
+// @version      2.0.1
 // @description  try to take over the world!
 // @author       You
 // @match        *://photo.weibo.com/*
@@ -80,20 +80,47 @@ function download(filename, text) {
     element.click();
     document.body.removeChild(element);
 }
+const selfFetch = (url, uid) => {
+    return fetch(url, {
+        headers: {
+            accept: "application/json, text/plain, */*",
+            "accept-language": "zh-CN,zh;q=0.9,be;q=0.8,en;q=0.7",
+            "cache-control": "no-cache",
+            "client-version": "v2.36.23",
+            pragma: "no-cache",
+            "sec-ch-ua": '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": '"Windows"',
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "server-version": "v2022.11.18.1",
+        },
+        referrer: `https://weibo.com/u/${uid}?tabtype=album`,
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+    });
+};
 class WeiBoDL {
     constructor() {
         // 初始化
         this.init = () => {
             // 加个延时
             // setTimeout(() => {
-            this.getUid();
+            this.getUserInfo();
             this.addUIToPage();
             // }, 2000)
         };
-        /*获取uid*/
-        this.getUid = () => {
+        /*获取uid,用户名称*/
+        this.getUserInfo = async () => {
             this.uid =
                 window.location.href?.match(/\/u\/(\d*)/)?.[1] || window?.$CONFIG?.oid;
+            const res = await selfFetch(`https://weibo.com/ajax/profile/info?uid=${this.uid}`, this.uid).then((r) => r.json());
+            this.userName =
+                res?.data?.user?.screen_name || window?.$CONFIG?.onick || "unknown";
         };
         /*添加ui到page上，并绑定好对应的处理事件*/
         this.addUIToPage = () => {
@@ -295,28 +322,7 @@ class WeiBoDL {
             };
         };
         this.getUrlList = async () => {
-            const res = await fetch(`https://weibo.com/ajax/profile/getImageWall?uid=${this.uid}&sinceid=${this.sinceId}${this.sinceId === "0" ? `&has_album=true` : ""}`, {
-                headers: {
-                    accept: "application/json, text/plain, */*",
-                    "accept-language": "zh-CN,zh;q=0.9,be;q=0.8,en;q=0.7",
-                    "cache-control": "no-cache",
-                    "client-version": "v2.36.23",
-                    pragma: "no-cache",
-                    "sec-ch-ua": '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                    "sec-ch-ua-mobile": "?0",
-                    "sec-ch-ua-platform": '"Windows"',
-                    "sec-fetch-dest": "empty",
-                    "sec-fetch-mode": "cors",
-                    "sec-fetch-site": "same-origin",
-                    "server-version": "v2022.11.18.1",
-                },
-                referrer: `https://weibo.com/u/${this.uid}?tabtype=album`,
-                referrerPolicy: "strict-origin-when-cross-origin",
-                body: null,
-                method: "GET",
-                mode: "cors",
-                credentials: "include",
-            }).then((r) => r.json());
+            const res = await selfFetch(`https://weibo.com/ajax/profile/getImageWall?uid=${this.uid}&sinceid=${this.sinceId}${this.sinceId === "0" ? `&has_album=true` : ""}`, this.uid).then((r) => r.json());
             this.sinceId = String(res.data.since_id);
             this.currentPage++;
             var state2 = document.getElementById("state2");
@@ -343,7 +349,7 @@ class WeiBoDL {
             });
             // console.log(this.urlList)
             console.log(logStr);
-            download(`uid_${this.uid}_date_${Date.now()}.txt`, logStr);
+            download(`username_${this.userName}_uid_${this.uid}_date_${Date.now()}.txt`, logStr);
             var dw = window.open();
             dw.document.open();
             dw.document.write("<div>" + divStr + "</div>");
@@ -354,6 +360,7 @@ class WeiBoDL {
         this.currentNum = 0;
         this.currentPage = 0;
         this.urlList = [];
+        this.userName = "";
         try {
             this.init();
         }

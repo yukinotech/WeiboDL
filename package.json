@@ -1,6 +1,6 @@
 {
   "name": "WeiboDL",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "weibo-dl.js",
   "repository": "https://github.com/yukinotech/WeiboDL",
   "author": "yukinotech",
