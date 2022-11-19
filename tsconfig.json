@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "None",
+    "noImplicitAny": true,
+    "sourceMap": false,
+    "declaration": false,
+    "removeComments": false,
+    "strict": false,
+    "skipLibCheck": true,
+    "lib": ["DOM", "ES2020"]
+  },
+  "include": ["weibo-dl.ts"],
+  "exclude": ["node_modules"]
+}
