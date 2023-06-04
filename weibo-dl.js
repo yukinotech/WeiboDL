@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         WeiboDL 异步增强版
 // @namespace    http://tampermonkey.net/
-// @version      2.0.1
+// @version      2.0.2
 // @description  try to take over the world!
 // @author       You
 // @match        *://photo.weibo.com/*
 // @match        *://weibo.com/u/*
+// @include      *://weibo.com/*?tabtype=album
 // @match        *://weibo.com/p/*/photos*
 // @grant        none
 // ==/UserScript==
@@ -118,9 +119,20 @@ class WeiBoDL {
         this.getUserInfo = async () => {
             this.uid =
                 window.location.href?.match(/\/u\/(\d*)/)?.[1] || window?.$CONFIG?.oid;
-            const res = await selfFetch(`https://weibo.com/ajax/profile/info?uid=${this.uid}`, this.uid).then((r) => r.json());
-            this.userName =
-                res?.data?.user?.screen_name || window?.$CONFIG?.onick || "unknown";
+            this.customUid =
+                window.location.href?.match(/weibo\.com\/([^\/]*?)\?tabtype=album/)?.[1] || undefined;
+            if (this.uid) {
+                const res = await selfFetch(`https://weibo.com/ajax/profile/info?uid=${this.uid}`, this.uid).then((r) => r.json());
+                this.userName =
+                    res?.data?.user?.screen_name || window?.$CONFIG?.onick || "unknown";
+            }
+            if (this.customUid) {
+                const res = await selfFetch(`https://weibo.com/ajax/profile/info?custom=${this.customUid}`, this.uid).then((r) => r.json());
+                this.userName =
+                    res?.data?.user?.screen_name || window?.$CONFIG?.onick || "unknown";
+                //根据customUid拿到的数据，回写uid
+                this.uid = res?.data?.user?.idstr;
+            }
         };
         /*添加ui到page上，并绑定好对应的处理事件*/
         this.addUIToPage = () => {
