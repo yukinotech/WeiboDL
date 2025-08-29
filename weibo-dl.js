@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         WeiboDL 异步增强版
+// @name         WeiboDL 异步增强版 微博图片下载
 // @namespace    http://tampermonkey.net/
-// @version      2.0.2
-// @description  try to take over the world!
+// @version      2.0.3
+// @description  微博图片下载 try to take over the world!
 // @author       You
 // @match        *://photo.weibo.com/*
 // @match        *://weibo.com/u/*
@@ -43,6 +43,7 @@ const generateN = (t) => {
     e ^= -1;
     for (var n = 0, s = t.length; n < s; n++)
         (o = 255 & (e ^ t.charCodeAt(n))),
+            // @ts-ignore
             (a = "0x" + i.substr(9 * o, 8)),
             (e = (e >>> 8) ^ a);
     return -1 ^ e;
@@ -341,7 +342,9 @@ class WeiBoDL {
             state2.innerText = "当前页数：第" + this.currentPage + "页";
             this.urlList.push(
             // @ts-ignore
-            ...res.data.list.map((item) => {
+            ...res.data.list
+                .filter((item) => item?.pid)
+                .map((item) => {
                 this.currentNum++;
                 var state3 = document.getElementById("state3");
                 state3.innerText = "已完成" + this.currentNum + "张";
@@ -349,7 +352,6 @@ class WeiBoDL {
             }));
             if (res.data.since_id === 0)
                 return "end";
-            // if (this.currentPage === 1) return "end"
         };
         //生成新标签页，并写入url
         this.output = () => {
@@ -359,7 +361,6 @@ class WeiBoDL {
                 logStr = logStr + "\n" + item;
                 divStr = divStr + `<div>${item}</div><br/>`;
             });
-            // console.log(this.urlList)
             console.log(logStr);
             download(`username_${this.userName}_uid_${this.uid}_date_${Date.now()}.txt`, logStr);
             var dw = window.open();

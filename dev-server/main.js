@@ -10,7 +10,7 @@ fastify.get("/", function (req, reply) {
   return reply.sendFile("weibo-dl.js")
 })
 
-fastify.listen(3001, function (err, address) {
+fastify.listen({ port: 3001, host: "localhost" }, function (err, address) {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
